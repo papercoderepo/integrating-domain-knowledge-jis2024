@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  audiomultidomain:
+    image: audiomultidomain
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - "${PWD}:/app"
+    mem_limit: 8g
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
